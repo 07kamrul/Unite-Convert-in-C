@@ -1,0 +1,987 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
+#include <string.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+#define MAXCHAR 1000
+//#include "rlutil.h"
+//#include<string.h>
+//CSE105 FALL18 EAST WEST UNIVRSITY,Dhaka
+//Unit Coverter
+//Sk. Sabit Faisal 2014-2-60-014
+//Instructor: Dr. Ahmed Wasif Reza
+
+typedef struct conreq
+{
+    char name[50];
+    char contype[50];
+    char from[50];
+    char to[50];
+    float unit1;
+}conreq;
+
+FILE *fpointer;
+FILE *reqpointer;
+void calculate(int t)
+{
+
+  switch(t)
+  {
+  case 1:
+    calculatemass();
+    break;
+
+  case 2:
+    calculatelength();
+    break;
+  case 3:
+    calculatearea();
+    break;
+  case 4:
+    calculatetemp();
+    break;
+  case 5:
+    calculatecur();
+    break;
+  case 6:
+    calculatetime();
+    break;
+  case 7:
+    calculatevol();
+    break;
+  case 8:
+    calculateang();
+    break;
+  case 9:
+    calculatep();
+    break;
+  case 10:
+    calculateass();
+    break;
+  case 11:
+    calculatereaddata();
+    break;
+  case 12:
+    showrequestlist();
+    break;
+   case 13:
+    conversionrequest();
+    break;
+  default:
+    printf("invalid input\n");
+  }
+
+}
+
+void calculatemass()
+{
+   int cm;
+   printf("     (mass and weight)select from the above list\n");
+   printf("                 1.ounce to drums\n");
+   printf("                 2.pound to ounces \n");
+   printf("                 3.ton to pounds\n");
+   printf("                 4.gram to miligram \n");
+   printf("                 5.gram to centigram\n");
+   printf("                 6.gram to decigram \n");
+   printf("                 7.kilogram to hectogram\n");
+   printf("                 8.miligram to gram \n");
+   printf("                 9.kilogram to decagram\n");
+   printf("                 10.kilogram to gram \n");
+   printf("                 11.metric ton to kilogram \n");
+   printf("                 12.pound to kilogram \n");
+   printf("                 13.kilogram to pound \n");
+   scanf("%d",&cm);
+   calculatemass2(cm);
+}
+void calculatemass2(int p)
+{
+    float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("enter ounces\n");
+    scanf("%f",&a);
+    b=a*16;
+    printf("%.2f ounces = %.2f drums\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f ounces = %.2f drums\n",a,b);
+    break;
+
+  case 2:
+    printf("enter pounds\n");
+    scanf("%f",&a);
+    b=a*16;
+    printf("%.2f pounds = %.2f ounces\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f pounds = %.2f ounces\n",a,b);
+    break;
+  case 3:
+    printf("enter tons\n");
+    scanf("%f",&a);
+    b=a*2000;
+    printf("%.2f tons = %.2f pounds\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f tons = %.2f pounds\n",a,b);
+    break;
+  case 4:
+    printf("enter grams\n");
+    scanf("%f",&a);
+    b=a*1000;
+    printf("%.2f grams = %.2f miligrams\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f grams = %.2f miligrams\n",a,b);
+    break;
+  case 5:
+    printf("enter grams\n");
+    scanf("%f",&a);
+    b=a*100;
+    printf("%.2f grams = %.2f centigrams\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f grams = %.2f centigrams\n",a,b);
+    break;
+  case 6:
+    printf("enter grams\n");
+    scanf("%f",&a);
+    b=a*10;
+    printf("%.2f grams = %.2f decigrams\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f grams = %.2f decigrams\n",a,b);
+    break;
+  case 7:
+    printf("enter kilograms\n");
+    scanf("%f",&a);
+    b=a*10;
+    printf("%.2f kilograms = %.2f hectograms\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f kilograms = %.2f hectograms\n",a,b);
+    break;
+  case 8:
+    printf("enter miligrams\n");
+    scanf("%f",&a);
+    b=a*0.001;
+    printf("%.2f miligrams = %.2f grams\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f miligrams = %.2f grams\n",a,b);
+    break;
+  case 9:
+    printf("enter kilograms\n");
+    scanf("%f",&a);
+    b=a*100;
+    printf("%.2f kilograms = %.2f decagrams\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f kilograms = %.2f decagrams\n",a,b);
+    break;
+  case 10:
+    printf("enter kilograms\n");
+    scanf("%f",&a);
+    b=a*1000;
+    printf("%.2f kilograms = %.2f grams\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f kilograms = %.2f grams\n",a,b);
+    break;
+  case 11:
+    printf("enter metric ton\n");
+    scanf("%f",&a);
+    b=a*1000;
+    printf("%.2f metric ton = %.2f kilograms\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f metric ton = %.2f kilograms\n",a,b);
+    break;
+  case 12:
+    printf("enter pounds\n");
+    scanf("%f",&a);
+    b=a*0.4536;
+    printf("%.2f pounds = %.2f kilograms\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f pounds = %.2f kilograms\n",a,b);
+    break;
+  case 13:
+    printf("enter kilograms\n");
+    scanf("%f",&a);
+    b=a*2.2046;
+    printf("%.2f kilograms = %.2f pounds\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f kilograms = %.2f pounds\n",a,b);
+    break;
+  case -1:
+    break;
+
+  default:
+    printf("invalid input\n");
+  }
+
+}
+
+/*
+void filewrite(float a, float b)
+{
+    FILE *fpointer;
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f ounces = %.2f drums\n",a,b);
+    fclose(fpointer);
+
+}
+*/
+
+
+//----------------------start of length-----------------------------------//
+
+void calculatelength()
+{
+   int cm;
+   printf("                 **Length Conversion**\n");
+   printf("                 1.feet to inches\n");
+   printf("                 2.yard to feet \n");
+   printf("                 3.furlong to feet\n");
+   printf("                 4.mile to feet \n");
+   printf("                 5.meter to centimeter\n");
+   printf("                 6.meter to milimeter \n");
+   printf("                 7.hectometer to meter\n");
+   printf("                 8.kilometer to meter \n");
+   printf("                 9.meter to inches\n");
+   printf("                 10.meter to feet \n");
+   printf("                 11.foot to meters\n");
+   printf("                 12.mile to meters \n");
+   printf("                 13.mile to kilometer \n");
+   scanf("%d",&cm);
+   calculatelength2(cm);
+}
+void calculatelength2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("enter feet\n");
+    scanf("%f",&a);
+    b=a*12;
+    printf("%.2f feet = %.2f inches\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f feet = %.2f inches\n",a,b);
+    break;
+
+  case 2:
+    printf("enter yards\n");
+    scanf("%f",&a);
+    b=a*3;
+    printf("%.2f yards = %.2f feet\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f yards = %.2f feet\n",a,b);
+    break;
+  case 3:
+    printf("enter furlong\n");
+    scanf("%f",&a);
+    b=a*660;
+    printf("%.2f furlong = %.2f feet\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f furlong = %.2f feet\n",a,b);
+    break;
+  case 4:
+    printf("enter miles\n");
+    scanf("%f",&a);
+    b=a*5280;
+    printf("%.2f miles = %.2f feet\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f miles = %.2f feet\n",a,b);
+    break;
+  case 5:
+    printf("enter meters\n");
+    scanf("%f",&a);
+    b=a*100;
+    printf("%.2f meters = %.2f centimeters\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f meters = %.2f centimeters\n",a,b);
+    break;
+  case 6:
+    printf("enter meters\n");
+    scanf("%f",&a);
+    b=a*1000;
+    printf("%.2f meters = %.2f milimeters\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f meters = %.2f milimeters\n",a,b);
+    break;
+  case 7:
+    printf("enter hectometer\n");
+    scanf("%f",&a);
+    b=a*100;
+    printf("%.2f hectometers = %.2f meters\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f hectometers = %.2f meters\n",a,b);
+    break;
+  case 8:
+    printf("enter kilometers\n");
+    scanf("%f",&a);
+    b=a*1000;
+    printf("%.2f kilometers = %.2f meters\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f kilometers = %.2f meters\n",a,b);
+    break;
+  case 9:
+    printf("enter meters\n");
+    scanf("%f",&a);
+    b=a*39.37;
+    printf("%.2f meters = %.2f inches\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f meters = %.2f inches\n",a,b);
+    break;
+  case 10:
+    printf("enter meters");
+    scanf("%f",&a);
+    b=a*3.28;
+    printf("%.2f meters = %.2f feet\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f meters = %.2f feet\n",a,b);
+    break;
+  case 11:
+    printf("enter foot\n");
+    scanf("%f",&a);
+    b=a*0.30;
+    printf("%.2f foot = %.2f meters\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f foot = %.2f meters\n",a,b);
+    break;
+  case 12:
+    printf("enter miles\n");
+    scanf("%f",&a);
+    b=a*1609.4;
+    printf("%.2f miles = %.2f meters\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f miles = %.2f meters\n",a,b);
+    break;
+  case 13:
+    printf("enter miles\n");
+    scanf("%f",&a);
+    b=a*1.6;
+    printf("%.2f miles = %.2f kilometers\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f miles = %.2f kilometers\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+
+
+
+//----------------------start of Area-----------------------------------//
+
+
+void calculatearea()
+{
+   int cm;
+   printf("                 **Area Conversion(choose option)**\n");
+   printf("                 1.square foot to square inches\n");
+   printf("                 2.square yard to square feet \n");
+   printf("                 3.acre to square feet\n");
+   printf("                 4.square mile to acre \n");
+   printf("                 5.square meter to square milimeter\n");
+   printf("                 6.square kilometer to square meter \n");
+   printf("                 7.square meter to square feet\n");
+   printf("                 8.square kilometer to acres \n");
+   scanf("%d",&cm);
+   calculatearea2(cm);
+}
+void calculatearea2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("enter square feet\n");
+    scanf("%f",&a);
+    b=a*144;
+    printf("%.2f square feet = %.2f square inches\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square feet = %.2f square inches\n",a,b);
+    break;
+
+  case 2:
+    printf("square yards\n");
+    scanf("%f",&a);
+    b=a*9;
+    printf("%.2f square yards = %.2f square feet\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square yards = %.2f square feet\n",a,b);
+    break;
+  case 3:
+    printf("enter acre\n");
+    scanf("%f",&a);
+    b=a*43560;
+    printf("%.2f acre = %.2f square feet\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f acre = %.2f square feet\n",a,b);
+    break;
+  case 4:
+    printf("enter square miles\n");
+    scanf("%f",&a);
+    b=a*640;
+    printf("%.2f square miles = %.2f acre\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square miles = %.2f acre\n",a,b);
+    break;
+  case 5:
+    printf("enter meters\n");
+    scanf("%f",&a);
+    b=a*100000;
+    printf("%.2f square meters = %.2f square milimeter\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square meters = %.2f square milimeter\n",a,b);
+    break;
+  case 6:
+    printf("enter square kilometers\n");
+    scanf("%f",&a);
+    b=a*1000000;
+    printf("%.2f square kilometers = %.2f square meters\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square kilometers = %.2f square meters\n",a,b);
+    break;
+  case 7:
+    printf("enter square meter\n");
+    scanf("%f",&a);
+    b=a*10.76;
+    printf("%.2f square meter = %.2f square feet\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square meter = %.2f square feet\n",a,b);
+    break;
+  case 8:
+    printf("enter square kilometers\n");
+    scanf("%f",&a);
+    b=a*247.1;
+    printf("%.2f square kilometers = %.2f acres\n",a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f square kilometers = %.2f acres\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+//----------------------start of Temperature-----------------------------------//
+
+
+void calculatetemp()
+{
+   int cm;
+   printf("              **Temperature Conversion(choose option)**\n");
+   printf("                 1.Fahrenheit to Celsius \n");
+   printf("                 2.Celsius  to Fahrenheit \n");
+   printf("                 3.Celsius to kelvin\n");
+   printf("                 4.kelvin to Celsius \n");
+   scanf("%d",&cm);
+   calculatetemp2(cm);
+}
+void calculatetemp2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("Enter Fahrenheit\n");
+    scanf("%f",&a);
+    b=((a-32)*(5/9));
+    printf("%.2f Fahrenheit = %.2f Celsius\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f Fahrenheit = %.2f Celsius\n",a,b);
+    break;
+
+  case 2:
+    printf("enter Celsius\n");
+    scanf("%f",&a);
+    b=(a*(9/5))+32;
+    printf("%.2f Celsius = %.2f Fahrenheit\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f Celsius = %.2f Fahrenheit\n",a,b);
+    break;
+  case 3:
+    printf("enter Celsius\n");
+    scanf("%f",&a);
+    b=a+273.15;
+    printf("%.2f Celsius = %.2f kelvin\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f Celsius = %.2f kelvin\n",a,b);
+    break;
+  case 4:
+    printf("enter kelvin\n");
+    scanf("%f",&a);
+    b=a-273.15;
+    printf("%.2f kelvin = %.2f Celsius\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f kelvin = %.2f Celsius\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+//----------------------start of currency convertion-----------------------------------//
+
+
+void calculatecur()
+{
+   int cm;
+   printf("              **Currency Conversion(choose option)**\n");
+   printf("                 1.USD to BDT \n");
+   printf("                 2.Euro to BDT \n");
+   printf("                 3.USD to Euro \n");
+   printf("                 4.Euro to USD\n");
+   printf("                 5.Japanese yen to BDT \n");
+   printf("                 6.Chinese yen to BDT \n");
+   printf("                 7.Saudi riyal to BDT \n");
+   scanf("%d",&cm);
+   calculatecur2(cm);
+}
+void calculatecur2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("Enter amount of USD\n");
+    scanf("%f",&a);
+    b=a*85;
+    printf("%.2f USD = %.2f BDT\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f USD = %.2f BDT\n\n",a,b);
+    break;
+
+  case 2:
+    printf("enter amount of Euro\n");
+    scanf("%f",&a);
+    b=a*100;
+    printf("%.2f Euro = %.2f BDT\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f Euro = %.2f BDT\n",a,b);
+    break;
+  case 3:
+    printf("enter USD\n");
+    scanf("%f",&a);
+    b=a*0.88;
+    printf("%.2f USD = %.2f euro\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f USD = %.2f euro\n",a,b);
+    break;
+  case 4:
+    printf("enter amount of Euro\n");
+    scanf("%f",&a);
+    b=a*1.14;
+    printf("%.2f euro = %.2f USD\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f euro = %.2f USD\n",a,b);
+    break;
+   case 5:
+    printf("enter amount of Japanese yen\n");
+    scanf("%f",&a);
+    b=a*0.74;
+    printf("%.2f Japanese yen = %.2f BDT\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f Japanese yen = %.2f BDT\n",a,b);
+    break;
+  case 6:
+    printf("enter Chinese yen\n");
+    scanf("%f",&a);
+    b=a*13.30;
+    printf("%.2f chinese yen = %.2f BDT\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f chinese yen = %.2f BDT\n",a,b);
+    break;
+  case 7:
+    printf("enter amount of saudi riyal\n");
+    scanf("%f",&a);
+    b=a*22.20;
+    printf("%.2f saudi riyal = %.2f BDT\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f saudi riyal = %.2f BDT\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+
+//----------------------start of Calculatetime-----------------------------------//
+
+void calculatetime()
+{
+printf("time conversion from 12 hour to 24 hour format \n");
+     int hour; int minute; int second; char m[2];
+     //printf("")
+    printf("enter HH:MM:SS AM/PM\n");
+    scanf("%d:%d:%d%s", &hour, &minute, &second, &m);
+    if (strcmp(m, "PM") == 0 && hour != 12 || strcmp(m, "AM") == 0 && hour == 12)
+      hour += 12;
+    hour %= 24;
+    printf("%02d:%02d:%02d\n", hour, minute, second);
+    fprintf(fpointer,"%02d:%02d:%02d\n", hour, minute, second);
+}
+
+
+//----------------------start of Calculatevol-----------------------------------//
+
+
+void calculatevol()
+{
+   int cm;
+   printf("              **volume Conversion(choose option)**\n");
+   printf("                 1.cubic foot to cubic inches \n");
+   printf("                 2.Cubic meter  to cubic feet \n");
+   scanf("%d",&cm);
+   calculatevol2(cm);
+}
+void calculatevol2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("Enter cubic feet\n");
+    scanf("%f",&a);
+    b=a * 1728;
+    printf("%.2f cubic feet = %.2f cubic inches\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f cubic feet = %.2f cubic inches\n",a,b);
+    break;
+
+  case 2:
+    printf("enter Cubic meter\n");
+    scanf("%f",&a);
+    b=a*35.31;
+    printf("%.2f cubic meter = %.2f cubic feet\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f cubic meter = %.2f cubic feet\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+
+
+//----------------------start of Calculate angular measurement-----------------------------------//
+
+
+void calculateang()
+{
+   int cm;
+   printf("              **Angular measurement Conversion(choose option)**\n");
+   printf("                 1.radian to degree \n");
+   scanf("%d",&cm);
+   calculateang2(cm);
+}
+void calculateang2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("Enter radian\n");
+    scanf("%f",&a);
+    b=a * 57.29;
+    printf("%.2f radian = %.2f degree\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f radian = %.2f degree\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+
+//----------------------start of Calculate pressure measurement-----------------------------------//
+
+
+void calculatep()
+{
+   int cm;
+   printf("              **Pressure Conversion(choose option)**\n");
+   printf("                 1.Atmosphere to Mercury\n");
+   printf("                 2.Atmosphere to Pascel\n");
+   scanf("%d",&cm);
+   calculatep2(cm);
+}
+void calculatep2(int p)
+{
+      float a,b;
+      switch(p)
+  {
+  case 1:
+    printf("Enter Atmosphiric measure\n");
+    scanf("%f",&a);
+    b=a * 29.21;
+    printf("%.2f atmosphere = %.2f mercurey\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f atmosphere = %.2f mercurey\n",a,b);
+    break;
+
+      case 2:
+    printf("Enter Atmosphiric measure\n");
+    scanf("%f",&a);
+    b=a * 101325;
+    printf("%.2f atm = %.2f pascel\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f atm = %.2f pascel\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+//----------------------start of Calculate astronomical unit-----------------------------------//
+
+
+void calculateass()
+{
+   int cm;
+   printf("              **Astronomical distance Conversion(choose option)**\n");
+   printf("           1.Light year to astronomical unit(1 unit = 93 million miles) \n");
+   scanf("%d",&cm);
+   //calculateass2(cm);
+   float a,b;
+    switch(cm)
+  {
+  case 1:
+    printf("Enter Light year\n");
+    scanf("%f",&a);
+    b=a * 63000;
+    printf("%.2f light year = %.2f AU\n",a,b);
+    //filewrite(a,b);
+    fpointer = fopen("data.txt","a");
+    fprintf(fpointer,"%.2f light year = %.2f AU\n",a,b);
+    break;
+  case -1:
+    break;
+  default:
+    printf("invalid input\n");
+  }
+}
+
+void calculatereaddata()
+{
+    printf("only Admin can access the data\nPlease give you username and password \n");
+    char name[20];
+    char password[10];
+    printf("Enter username: ");
+    scanf("%s",name);
+    printf("Enter password: ");
+    scanf("%s",password);
+    if (strcmp(name, "Sabit") == 0 && strcmp(password, "helloc") == 0)
+    {
+            printf("Access granted\n");
+            printf("Welcome Sk. Sabit faisal\n");
+            //fprintf(fpointer,"System Accessing: Sk. Sabit faisal\n");
+
+            //FILE *fp;
+    char str[MAXCHAR];
+    char* filename = "data.txt";
+
+    fpointer = fopen(filename, "r");
+    if (fpointer == NULL){
+        printf("Could not open file %s",filename);
+        return 1;
+    }
+    while (fgets(str, MAXCHAR, fpointer) != NULL)
+        printf("%s", str);
+    fclose(fpointer);
+    }
+     else
+    {
+     printf("Access denied!!! Program is exiting \n");
+     exit(0);
+    }
+}
+
+
+void showrequestlist()
+{
+    printf("only Admin can access the data\nPlease give you username and password \n");
+    char name[20];
+    char password[10];
+    printf("Enter username: ");
+    scanf("%s",name);
+    printf("Enter password: ");
+    scanf("%s",password);
+    if (strcmp(name, "Sabit") == 0 && strcmp(password, "helloc") == 0)
+    {
+            printf("Access granted\n");
+            printf("Welcome Sk. Sabit faisal\n");
+            //fprintf(fpointer,"System Accessing: Sk. Sabit faisal\n");
+
+            //FILE *fp;
+    char str[MAXCHAR];
+    char* filename = "reqlist.txt";
+
+    reqpointer = fopen(filename, "r");
+    if (reqpointer == NULL){
+        printf("Could not open file %s",filename);
+        return 1;
+    }
+    while (fgets(str, MAXCHAR, reqpointer) != NULL)
+        printf("%s", str);
+    fclose(reqpointer);
+    }
+     else
+    {
+     printf("Access denied!!! Program is exiting \n");
+     exit(0);
+    }
+}
+
+
+void identification()
+{
+    char name[20];
+    char password[10];
+    printf("Enter username: ");
+    scanf("%s",name);
+    printf("Enter password: ");
+    scanf("%s",password);
+    if (strcmp(name, "Sabit") == 0 && strcmp(password, "helloc") == 0)
+    {
+            printf("Access granted\n");
+            printf("Welcome Sk. Sabi faisal\n");
+            //fprintf(fpointer,"System Accessing: Sk. Sabit faisal\n");
+    }
+        else if (strcmp(name, "Rodoshi") == 0 && strcmp(password, "hellod") == 0)
+    {
+            printf("Access granted\n");
+            fprintf(fpointer,"System Accessing: Rodoshi Suzena Kabir\n");
+            //printf("Welcome Rodoshi suzana kabir\n");
+    }
+     else if (strcmp(name, "Kamrul") == 0 && strcmp(password, "helloe") == 0)
+    {
+            printf("Access granted\n");
+            fprintf(fpointer,"System Accessing: Kamrul Hasan\n");
+            //printf("Welcome Rodoshi suzana kabir\n");
+    }
+      else
+    {
+     printf("Access denied!!!reenter your correct username and password \n");
+     identification();
+
+     //exit(0);
+     }
+
+}
+    //char name[50];
+    //char contype[50];
+    //char from[50];
+    //char to[50];
+   // float unit1;
+
+
+void conversionrequest()
+{
+    conreq iamreq;
+
+    printf("enter your name, Conversion type, from, to and unit \n");
+    scanf("%s",iamreq.name);
+    scanf("%s",iamreq.contype);
+    scanf("%s",iamreq.from);
+    scanf("%s",iamreq.to);
+    scanf("%f",&(iamreq.unit1));
+
+    reqpointer = fopen("reqlist.txt","a");
+    fprintf(reqpointer,"%s requests to convert %s from %s to %s at unit %f\n",iamreq.name,iamreq.contype,iamreq.from,iamreq.to,iamreq.unit1);
+
+
+
+}
+
+
+int main()
+{
+    //setColor(BLUE);
+   identification();
+   int t=0;
+
+   //printf("Enter your username\n")
+//   scanf("")
+
+   while(t!=-1)
+   {
+   printf("---------------------------------------------------\n");
+   printf("-----------Basic Unit Converter in C--------------\n");
+   printf("What you one to convert? select from the above list\n");
+   printf("------------(-1 to terminate)----------------------\n");
+
+   printf("                 1.Mass\n");
+   printf("                 2.Length\n");
+   printf("                 3.Area\n");
+   printf("                 4.Temperature\n");
+   printf("                 5.Currency\n");
+   printf("                 6.Time\n");
+   printf("                 7.Volume\n");
+   printf("                 8.Angular measurement\n");
+   printf("                 9.Pressure\n");
+   printf("                 10.Astronomical conversion\n");
+   printf("---------------------------------------------------\n");
+   printf("11.view all data conversion operation(admin only) \n");
+   printf("12.View all coversion request(admin only) \n");
+   printf("---------------------------------------------------\n");
+   printf("13.Send coversion request(member only) \n");
+   printf("---------------------------------------------------\n");
+   scanf("%d",&t);
+   if (t!=-1)
+   {
+       calculate(t);
+   }
+
+
+   }
+
+    fclose(fpointer);
+    fclose(reqpointer);
+    return 0;
+
+}
